@@ -5,10 +5,23 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public static final int RC_LOGIN=1;
     boolean logon = false;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if (!logon){ //如沒登入開啟LoginActivity
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivityForResult(intent,RC_LOGIN);
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -24,13 +37,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (!logon){ //如沒登入開啟LoginActivity
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivityForResult(intent,RC_LOGIN);
-        }
+    public void next(View v){
+        EditText edNickname = findViewById(R.id.ed_nickname);
+        String nickname = edNickname.getText().toString();
+        getSharedPreferences("user",MODE_PRIVATE)
+                .edit()
+                .putString("NICKNAME",nickname)
+                .apply();
+        Intent age = new Intent(this,AgeActivity.class);
+        startActivity(age);
     }
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.holly.atm;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,10 +42,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       // EditText edUserid = findViewById(R.id.ed_userid);
+       /* EditText edUserid = findViewById(R.id.ed_userid);
 
-       // String uid = getSharedPreferences("USERID",MODE_PRIVATE)
-             //   .getString("USERID",uid);
+        SharedPreferences settings = getSharedPreferences("USERID",MODE_PRIVATE);
+        settings.getString("USERID",uid);   */
 
     }
 }
