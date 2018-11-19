@@ -31,22 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 String uid = data.getStringExtra("LOGIN_USERID");
                 String pw = data.getStringExtra("LOGIN_PASSWD");
                 Log.d("RESULT",uid + "/" + pw);
-            }else{
                 finish();
+            }else{
+                Intent nickname = new Intent(this,NicknameActivity.class);
+                setResult(RESULT_OK);
+                startActivity(nickname);
             }
         }
     }
 
-    public void next(View v){
-        EditText edNickname = findViewById(R.id.ed_nickname);
-        String nickname = edNickname.getText().toString();
-        getSharedPreferences("user",MODE_PRIVATE)
-                .edit()
-                .putString("NICKNAME",nickname)
-                .apply();
-        Intent age = new Intent(this,AgeActivity.class);
-        startActivity(age);
-    }
 
 
 

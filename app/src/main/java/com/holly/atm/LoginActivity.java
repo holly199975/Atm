@@ -15,10 +15,10 @@ public class LoginActivity extends AppCompatActivity {
         String uid = edUserid.getText().toString();
         String pw = edPasswd.getText().toString();
         if (uid.equals("jack") && pw.equals("1234")){
-            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
-            getIntent().putExtra("LOGIN_USERID",uid);
-            getIntent().putExtra("LOGIN_PASSWD",pw);
-            setResult(RESULT_OK,getIntent());
+           // Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
+           /* getIntent().putExtra("LOGIN_USERID",uid);
+            getIntent().putExtra("LOGIN_PASSWD",pw);*/
+            //setResult(RESULT_OK,getIntent());
 
             getSharedPreferences("atm",MODE_PRIVATE)
                     .edit()
