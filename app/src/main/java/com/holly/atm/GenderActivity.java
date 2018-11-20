@@ -22,6 +22,8 @@ public class GenderActivity extends AppCompatActivity {
                 .putString("GENDER",gender)
                 .apply();
         Intent main = new Intent(this,MainActivity.class);
+        setResult(RESULT_OK);
+        main.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(main);
     }
 

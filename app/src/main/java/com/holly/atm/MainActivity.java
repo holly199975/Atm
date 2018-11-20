@@ -33,9 +33,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("RESULT",uid + "/" + pw);
                 finish();
             }else{
-                Intent nickname = new Intent(this,NicknameActivity.class);
-                setResult(RESULT_OK);
-                startActivity(nickname);
+                String nickname = getSharedPreferences("user",MODE_PRIVATE)
+                        .getString("NICKNAME",null);
+                String age = getSharedPreferences("user",MODE_PRIVATE)
+                        .getString("AGE",null);
+                String gender = getSharedPreferences("user",MODE_PRIVATE)
+                        .getString("GENDER",null);
+                if (nickname == null || age == null || gender == null) {
+                    Intent nick = new Intent(this, NicknameActivity.class);
+                    startActivity(nick);
+                }
             }
         }
     }
