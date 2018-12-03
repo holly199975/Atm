@@ -4,18 +4,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class User {
-    private  Context context;
+    private Context context;
     String id;
     String nickname;
-    String age;
-    String gender;
+    int age;
+    int gender;
+    String address;
+    SharedPreferences settings;
     boolean valid = false;
 
-    SharedPreferences settings;
-
-    public User(Context context){
+    public User(Context context) {
         this.context = context;
-        settings = context.getSharedPreferences("user",Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences("user", Context.MODE_PRIVATE);
     }
 
     public String getId() {
@@ -27,50 +27,55 @@ public class User {
     }
 
     public String getNickname() {
-        if (nickname == null){
-            nickname = settings.getString("NICKNAME",null);
+        if (nickname == null) {
+            nickname = settings.getString("NICKNAME", null);
         }
-
         return nickname;
     }
 
     public void setNickname(String nickname) {
         settings.edit()
-                .putString("NICKNAME",nickname)
-                .apply();
+                .putString("NICKNAME", nickname).apply();
         this.nickname = nickname;
     }
 
-    public String getAge() {
-        if (age == null){
-            age = settings.getString("AGE",null);
+    public int getAge() {
+        if (age == 0) {
+            age = settings.getInt("AGE", 0);
         }
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         settings.edit()
-                .putString("AGE",age)
-                .apply();
+                .putInt("AGE", age).apply();
         this.age = age;
     }
 
-    public String getGender() {
-        if (gender == null){
-            gender = settings.getString("GENDER",null);
+    public int getGender() {
+        if (gender == 0) {
+            gender = settings.getInt("GENDER", 0);
         }
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         settings.edit()
-                .putString("GENDER",gender)
-                .apply();
+                .putInt("GENDER", gender).apply();
         this.gender = gender;
     }
 
     public boolean isValid() {
-        valid = getNickname() != null && age != null && gender != null;
+        valid = getNickname() != null && age != 0 && gender !=0;
         return valid;
+    }
+
+    public String getAddress() {
+        address = "dummy address";
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

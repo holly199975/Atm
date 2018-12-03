@@ -9,43 +9,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    public void login(View v){
-        EditText edUserid = findViewById(R.id.ed_userid);
-        EditText edPasswd = findViewById(R.id.ed_passwd);
-        String uid = edUserid.getText().toString();
-        String pw = edPasswd.getText().toString();
-        if (uid.equals("jack") && pw.equals("1234")){
-           // Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
-           /* getIntent().putExtra("LOGIN_USERID",uid);
-            getIntent().putExtra("LOGIN_PASSWD",pw);*/
-            //setResult(RESULT_OK,getIntent());
 
-            getSharedPreferences("atm",MODE_PRIVATE)
-                    .edit()
-                    .putString("USERID",uid)
-                    .apply();
-            finish();
-        }else{
-            new AlertDialog.Builder(this)
-                    .setTitle("Atm")
-                    .setMessage("登入失敗")
-                    .setPositiveButton("OK",null)
-                    .show();
-
-        }
-    }
-
-    public void cancel(View v){
-
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       /* EditText edUserid = findViewById(R.id.ed_userid);
+        EditText edUserid = findViewById(R.id.ed_userid);
+        String userid = getSharedPreferences("atm", MODE_PRIVATE)
+                .getString("USERID", "");
+        edUserid.setText(userid);
+    }
 
-        SharedPreferences settings = getSharedPreferences("USERID",MODE_PRIVATE);
-        settings.getString("USERID",uid);   */
-
+    public void login(View view) {
+        String userid = ((EditText)findViewById(R.id.ed_userid)).getText().toString();
+        String passwd = ((EditText)findViewById(R.id.ed_password)).getText().toString();
+        if ("jack".equals(userid) && "1234".equals(passwd)) {
+            getSharedPreferences("atm", MODE_PRIVATE)
+                    .edit()
+                    .putString("USERID", userid)
+                    .apply();
+            setResult(RESULT_OK);
+            finish();
+        }
     }
 }
