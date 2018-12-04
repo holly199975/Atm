@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,7 +87,7 @@ public class MainActivity extends BaseActivity {
                 finish();
             } else {
                 logon = true;
-                if (user.isValid()){
+                if (!user.isValid()){
                     Intent nick = new Intent(this, NicknameActivity.class);
                     startActivity(nick);
                 }
