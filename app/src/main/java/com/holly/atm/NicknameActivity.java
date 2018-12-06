@@ -15,10 +15,11 @@ public class NicknameActivity extends BaseActivity {
     }
 
     public void next(View view) {
-        EditText edNickname = findViewById(R.id.ed_nickname);
-        String nickname = edNickname.getText().toString();
-        user.setNickname(nickname);
-        Intent age = new Intent(this, AgeActivity.class);
+        EditText edNick = findViewById(R.id.ed_nickname);
+        String nickName = edNick.getText().toString();
+        user.setNickName(nickName);
+
+        Intent age = new Intent(NicknameActivity.this,AgeActivity.class);
         startActivity(age);
     }
 }

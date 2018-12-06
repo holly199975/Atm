@@ -1,10 +1,14 @@
 package com.holly.atm;
 
+import  android.content.Intent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.parseUri;
 
 public class GenderActivity extends BaseActivity {
 
@@ -14,16 +18,17 @@ public class GenderActivity extends BaseActivity {
         setContentView(R.layout.activity_gender);
     }
 
-    public void next(View view) {
-        int gender = Integer.parseInt(((EditText)findViewById(R.id.ed_gender)).getText().toString());
+    public void next4(View view) {
+        EditText edGender = findViewById(R.id.ed_gender);
+        int  gender = Integer.parseInt(edGender.getText().toString());
         user.setGender(gender);
-        Intent main = new Intent(this, MainActivity.class);
+
+        Intent main = new Intent(GenderActivity.this,MainActivity.class);
         setResult(RESULT_OK);
-        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        main.setFlags(FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(main);
     }
-
-    public void back(View view) {
+    public void back2(View view) {
         finish();
     }
 }

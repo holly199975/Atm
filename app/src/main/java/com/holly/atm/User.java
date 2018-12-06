@@ -26,14 +26,15 @@ public class User {
         this.id = id;
     }
 
-    public String getNickname() {
+    public String getNickName() {
         if (nickname == null) {
             nickname = settings.getString("NICKNAME", null);
         }
         return nickname;
+
     }
 
-    public void setNickname(String nickname) {
+    public void setNickName(String nickName) {
         settings.edit()
                 .putString("NICKNAME", nickname).apply();
         this.nickname = nickname;
@@ -65,17 +66,21 @@ public class User {
         this.gender = gender;
     }
 
-    public boolean isValid() {
-        valid = getNickname() != null && age != 0 && gender !=0;
-        return valid;
-    }
-
     public String getAddress() {
-        address = "dummy address";
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+
+    public boolean isValid() {
+        valid = getNickName() != null && getAge() != 0 && getGender() != 0;
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }
